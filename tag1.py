@@ -32,16 +32,16 @@ def on_message(client, userdata, msg):
         pose.point.x = data["position"]["x"]
         pose.point.y = data["position"]["y"]
         pose.point.z = data["position"]["z"]
-        marker_publisher = rospy.Publisher('visualization_marker/Black', Marker, queue_size=128)
+        marker_publisher = rospy.Publisher('visualization_marker/Tag1', Marker, queue_size=128)
         marker = Marker(
                 type=Marker.TEXT_VIEW_FACING,
                 id=0,
                 lifetime=rospy.Duration(1000),
-                pose=Pose(Point(data["position"]["x"],data["position"]["y"], data["position"]["z"]+0.8), Quaternion(0, 0, 0, 1)),
+                pose=Pose(Point(data["position"]["x"],data["position"]["y"], data["position"]["z"]+2.8), Quaternion(0, 0, 0, 1)),
                 scale=Vector3(0.25, 0.25, 0.25),
                 header=Header(frame_id='/my_frame'),
                 color=ColorRGBA(1.0, 1.0, 1.0, 0.8),
-                text="Black\n"+
+                text="Tag1\n"+
 		     "Pos:"+str(data["position"]["x"])[:4]+","+str(data["position"]["y"])[:4]+","+str(data["position"]["z"])[:4]+"(m)\n"+
 		     "Accel:"+hex_string.decode("hex")[:14]+"(m/s^2)\n"+
                      "Gyro:"+hex_string.decode("hex")[16:-2]+"(d/s)")
@@ -60,7 +60,7 @@ client.on_message = on_message
 
 client.connect(MQTT_Server_IP, 1883, 60)
 
-pub = rospy.Publisher('dwm/tag/black/Pose', PointStamped, queue_size=128)
+pub = rospy.Publisher('dwm/tag/Tag1/Pose', PointStamped, queue_size=128)
 rospy.init_node('tag_black', anonymous=True)
 rate = rospy.Rate(1000)
 
