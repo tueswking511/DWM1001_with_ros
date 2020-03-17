@@ -1,0 +1,11 @@
+sudo tar -zxvf geckodriver-v0.26.0-linux64.tar.gz
+
+echo $PATH
+
+sudo mv ./geckodriver /usr/local/bin/
+
+sudo chmod a+x /usr/local/bin/geckodriver
+
+pip install selenium
+
+rosrun tf static_transform_publisher 0 0 0 0 0 0 1 map my_frame 10
