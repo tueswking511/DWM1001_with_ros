@@ -7,7 +7,7 @@ from std_msgs.msg import String, Header, ColorRGBA
 from geometry_msgs.msg import PointStamped,Quaternion, Pose, Point, Vector3
 from visualization_msgs.msg import Marker
 
-MQTT_Server_IP="192.168.137.131"
+MQTT_Server_IP="192.168.139.131"
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
