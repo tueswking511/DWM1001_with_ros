@@ -43,7 +43,7 @@ def on_message(client, userdata, msg):
         pose.header.frame_id = "/my_frame"
         pose.header.stamp = rospy.Time.now()
         if type(data["position"]["x"]) == float:
-            # print("TAG1:x:%.2f, y:%.2f, z:%.2f" % (data["position"]["x"], data["position"]["y"], data["position"]["z"]))
+            print("TAG1:x:%.2f, y:%.2f, z:%.2f" % (data["position"]["x"], data["position"]["y"], data["position"]["z"]))
             x1 = data["position"]["x"]
             y1 = data["position"]["y"]
             z1 = data["position"]["z"]
@@ -53,7 +53,7 @@ def on_message(client, userdata, msg):
         pub.publish(pose)
 
     elif msg.topic == "dwm/node/d43a/uplink/data":
-        # print("IMU1:%s" % filter(lambda ch: ch in '0123456789-.,', base64.b64decode(data["data"])))
+        print("IMU1:%s" % filter(lambda ch: ch in '0123456789-.,', base64.b64decode(data["data"])))
         temp = filter(lambda ch: ch in '0123456789-.,', base64.b64decode(data["data"]))
         location = 0
         for i in range(3):
@@ -79,7 +79,7 @@ def on_message(client, userdata, msg):
         pose.header.frame_id = "/my_frame"
         pose.header.stamp = rospy.Time.now()
         if type(data["position"]["x"]) == float:
-            # print("TAG2:x:%.2f, y:%.2f, z:%.2f" % (data["position"]["x"], data["position"]["y"], data["position"]["z"]))
+            print("TAG2:x:%.2f, y:%.2f, z:%.2f" % (data["position"]["x"], data["position"]["y"], data["position"]["z"]))
             x2 = data["position"]["x"]
             y2 = data["position"]["y"]
             z2 = data["position"]["z"]
@@ -89,7 +89,7 @@ def on_message(client, userdata, msg):
         pub2.publish(pose)
 
     elif msg.topic == "dwm/node/410d/uplink/data":
-	# print("IMU2:%s" % filter(lambda ch: ch in '0123456789-.,', base64.b64decode(data["data"])))
+	print("IMU2:%s" % filter(lambda ch: ch in '0123456789-.,', base64.b64decode(data["data"])))
         temp = filter(lambda ch: ch in '0123456789-.,', base64.b64decode(data["data"]))
         location = 0
         for i in range(3):
@@ -111,7 +111,7 @@ def on_message(client, userdata, msg):
         marker_publisher2.publish(marker2)
 
     elif str(data["configuration"]["nodeType"]) == "ANCHOR":
-	# print(msg.topic+" "+str(msg.payload))
+	print(msg.topic+" "+str(msg.payload))
         t = threading.Thread(target=push_anchor, args=(data,))
 	t.setDaemon(True)
         t.start()
